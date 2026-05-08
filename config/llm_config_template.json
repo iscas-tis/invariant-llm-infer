@@ -1,0 +1,69 @@
+[
+  {
+    "provider": "qwen",
+    "baseurl": "https://dashscope.aliyuncs.com/compatible-mode/v1",
+    "api_key": "sk-",
+    "model": "qwen3-max",
+    "payload_template": {
+      "max_tokens": 2048,
+      "temperature": 0.7,
+      "top_p": 0.9
+    },
+    "pricing_per_millon_tokens_RMB": 16,
+    "tags": ["out-default", "better"],
+    "context_window": "256k"
+  },
+  {
+    "provider": "qwen",
+    "baseurl": "https://dashscope.aliyuncs.com/compatible-mode/v1",
+    "api_key": "sk-",
+    "model": "qwen-plus",
+    "payload_template": {
+      "max_tokens": 2048,
+      "temperature": 0.7
+    },
+    "pricing_per_millon_tokens_RMB": 2.8,
+    "tags": ["cheap","fast", "long-context"],
+    "context_window": "1024k"
+  },
+  {
+    "provider": "glm",
+    "baseurl": "https://dashscope.aliyuncs.com/compatible-mode/v1",
+    "api_key": "sk-",
+    "model": "glm-4.6",
+    "payload_template": {
+      "max_tokens": 2048,
+      "temperature": 0.7
+    },
+    "pricing_per_millon_tokens_RMB": 17,
+    "tags": ["better"],
+    "context_window": "198k"
+  },
+  {
+    "provider": "glm",
+    "baseurl": "https://dashscope.aliyuncs.com/compatible-mode/v1",
+    "api_key": "sk-",
+    "model": "glm-4.7",
+    "payload_template": {
+      "max_tokens": 4096,
+      "temperature": 0.7
+    },
+    "pricing_per_millon_tokens_RMB": 17,
+    "tags": ["better","default"],
+    "context_window": "198k"
+  },
+  {
+    "provider": "moonshot",
+    "baseurl": "https://dashscope.aliyuncs.com/compatible-mode/v1",
+    "api_key": "sk-",
+    "model": "Moonshot-Kimi-K2-Instruct",
+    "payload_template": {
+      "max_tokens": 2048,
+      "temperature": 0.7
+    },
+    "pricing_per_millon_tokens_RMB": 20,
+    "tags": ["better"],
+    "context_window": "128k"
+  }
+]
+

@@ -1,0 +1,37 @@
+[build-system]
+requires = ["setuptools", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "invariant-llm-infer"
+version = "0.1.0"
+description = "LLM-based invariant inference for C programs"
+authors = [
+  {name = "MikhayEeer"}
+]
+readme = "README.md"
+requires-python = ">=3.10"
+dependencies = [
+  "typer>=0.9.0",
+  "rich>=13.7.0",
+  "openai>=1.42.0",
+  "tree-sitter>=0.25.2",
+  "tree-sitter-c>=0.24.2",
+  "pandas>=2.0.0",
+]
+
+[project.scripts]
+invariant-infer = "src.command:app"
+invariant-mcp = "src.mcp_server:main"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.setuptools.package-data]
+"playground.prompts" = ["invariants/*.txt"]
+
+[project.optional-dependencies]
+test = ["pytest>=7.4.0"]
+
+[tool.pytest.ini_options]
+pythonpath = ["src"]

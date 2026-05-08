@@ -1,0 +1,22 @@
+# Core dependencies
+typer>=0.9.0
+rich>=13.7.0
+openai>=1.42.0
+
+# C parsing and AST
+tree-sitter==0.25.2
+tree-sitter-c==0.24.2
+
+# Data processing
+pandas>=2.0.0
+numpy>=1.26.0
+pyyaml>=6.0
+
+# Optional: Z3 solver for invariant filtering
+z3-solver>=4.12.0
+
+# Optional: HNSW for similarity search (used in some modules)
+hnswlib>=0.8.0
+
+# Development dependencies
+pytest>=7.4.0

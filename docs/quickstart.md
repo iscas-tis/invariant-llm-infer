@@ -1,6 +1,6 @@
-# invariant_module 快速验证指南
+# invariant-llm-infer 快速验证指南
 
-本文档提供最小步骤，快速验证 `src/invariant_module/inv_assume` 模块可用。
+本文档提供最小步骤，快速验证 `inv_assume` 模块可用。
 
 ## 一键验证
 
@@ -9,7 +9,7 @@
 unset http_proxy https_proxy HTTP_PROXY HTTPS_PROXY all_proxy ALL_PROXY
 
 # 生成插桩代码 + SeaHorn 验证（一条命令完成）
-python3 -m src.invariant_module.inv_assume.pipeline examples/miniaevalterm/nonlin_div_term_1.c --output results/invariant_module_test --config llm_config.json --verify
+PYTHONPATH=src python -m inv_assume.pipeline examples/nonlin_div_term_1.c --output results/test --config llm_config.json --verify
 ```
 
 **预期输出**:
@@ -30,13 +30,13 @@ Verification result: safe (unsat)
 
 ```bash
 unset http_proxy https_proxy HTTP_PROXY HTTPS_PROXY all_proxy ALL_PROXY
-python3 -m src.invariant_module.inv_assume.pipeline examples/miniaevalterm/nonlin_div_term_1.c --output results/invariant_module_test --config llm_config.json
+PYTHONPATH=src python -m inv_assume.pipeline examples/nonlin_div_term_1.c --output results/test --config llm_config.json
 ```
 
 ### 步骤 2: 查看生成的代码
 
 ```bash
-cat results/invariant_module_test/nonlin_div_term_1.c.instrumented.c
+cat results/test/nonlin_div_term_1.c.instrumented.c
 ```
 
 输出示例：
@@ -63,7 +63,7 @@ int main() {
 ```bash
 docker run --rm -v "$(pwd)":/work -w /work \
   seahorn/seahorn-llvm14:nightly \
-  sea pf results/invariant_module_test/nonlin_div_term_1.c.instrumented.c --vac
+  sea pf results/test/nonlin_div_term_1.c.instrumented.c --vac
 ```
 
 ---
@@ -168,7 +168,7 @@ test -f config/llm_config.json && echo "LLM config OK"
 ## 更多示例文件
 
 ```bash
-ls examples/miniaevalterm/
+ls examples/
 ```
 
 可用测试文件：
@@ -185,7 +185,7 @@ ls examples/miniaevalterm/
 
 对整个目录进行分析：
 ```bash
-python3 -m src.invariant_module.inv_assume.pipeline examples/miniaevalterm --output results/batch --config llm_config.json --verify
+PYTHONPATH=src python -m inv_assume.pipeline examples/ --output results/batch --config llm_config.json --verify
 ```
 
 ---
@@ -194,7 +194,7 @@ python3 -m src.invariant_module.inv_assume.pipeline examples/miniaevalterm --out
 
 使用 `2stage` 策略可生成更精确的不变量（更慢但质量更高）：
 ```bash
-python3 -m src.invariant_module.inv_assume.pipeline examples/miniaevalterm/nonlin_div_term_1.c --output results/invariant_module_test --config llm_config.json --strategy 2stage --verify
+PYTHONPATH=src python -m inv_assume.pipeline examples/nonlin_div_term_1.c --output results/test --config llm_config.json --strategy 2stage --verify
 ```
 
 ---
@@ -202,7 +202,7 @@ python3 -m src.invariant_module.inv_assume.pipeline examples/miniaevalterm/nonli
 ## 模块结构
 
 ```
-src/invariant_module/
+src/
 ├── inv_assume/               # 核心插桩子模块
 │   ├── pipeline.py           # 主流程入口
 │   ├── c_parser.py           # C代码AST解析
@@ -216,6 +216,7 @@ src/invariant_module/
 ├── refinement_pipeline.py    # 完整细化Pipeline
 ├── command.py                # CLI命令集成
 ├── predictor.py              # 不变量预测器
+├── llm_client/               # LLM客户端模块
 └── playground/               # 实验性比较脚本
 ```
 

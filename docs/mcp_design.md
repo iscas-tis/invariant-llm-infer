@@ -12,13 +12,13 @@
 本仓库现在提供了一个轻量 MCP stdio server：
 
 ```bash
-PYTHONPATH=src python -m invariant_module.mcp_server
+PYTHONPATH=src python -m mcp_server
 ```
 
 打包安装后也可以使用：
 
 ```bash
-evolveterm-invariant-mcp
+invariant-mcp
 ```
 
 ## 设计分层

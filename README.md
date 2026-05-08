@@ -2,11 +2,13 @@
 
 LLM-based invariant inference for C programs.
 
+Repository: https://github.com/iscas-tis/invariant-llm-infer
+
 ## Quick Start
 
 ```bash
 # Generate invariant with verification
-python -m src.inv_assume.pipeline examples/nonlin_div_term_1.c --output results/test --config llm_config.json --verify
+PYTHONPATH=src python -m inv_assume.pipeline examples/nonlin_div_term_1.c --output results/test --config llm_config.json --verify
 ```
 
 See [docs/quickstart.md](docs/quickstart.md) for detailed instructions.

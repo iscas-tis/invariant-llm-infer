@@ -1,0 +1,25 @@
+Reference cases (for inspiration):
+${references}
+
+Target code:
+BEGIN_CODE
+${code}
+END_CODE
+
+Identified Loop Invariants:
+${invariants}
+
+Current Mode: ${mode}
+${termination_hint}
+
+Please identify the Ranking Function.
+1. If Mode is "direct":
+   - Provide the full mathematical expression for the ranking function.
+   - Consider Scalar vs Lexicographic.
+
+2. If Mode is "template" (for SVMRanker):
+   - We need to configure the SVMRanker tool.
+   - Suggest the `type` ("lnested" or "lmulti") and `depth` (e.g., 1, 2).
+   - You can provide a `ranking_function` guess if possible, or set it to null if you want the tool to find it.
+
+Show your verification math first.
